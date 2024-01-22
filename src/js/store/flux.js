@@ -16,7 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		  }
   
 		  const resp = await fetch(
-			`https://swapi.dev/api/${resource}/?page=${page}`
+			`https://www.swapi.tech/api/${resource}/?page=${page}`
 		  );
 		  const data = await resp.json();
   
@@ -35,7 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   
 		fetchPersonDetails: async (id) => {
 		  try {
-			const url = `https://swapi.dev/api/people/${id}/`;
+			const url = `https://www.swapi.tech/api/people/${id}/`;
 			const response = await fetch(url);
 			if (!response.ok) {
 			  throw new Error("Failed to fetch person details");
@@ -53,7 +53,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		  }
   
 		  const resp = await fetch(
-			`https://swapi.dev/api/${resource}/?page=${page}`
+			`https://www.swapi.tech/api/${resource}/?page=${page}`
 		  );
 		  const data = await resp.json();
   
@@ -72,7 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   
 		fetchPlanetDetail: async (id) => {
 		  try {
-			const url = `https://swapi.dev/api/planets/${id}/`; // Update the API endpoint to fetch planet details
+			const url = `https://www.swapi.tech/api/planets/${id}/`; // Update the API endpoint to fetch planet details
 			const response = await fetch(url);
 			if (!response.ok) {
 			  throw new Error("Failed to fetch planet details"); // Update the error message
@@ -90,7 +90,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		  }
   
 		  const resp = await fetch(
-			`https://swapi.dev/api/${resource}/?page=${page}`
+			`https://www.swapi.tech/api/${resource}/?page=${page}`
 		  );
 		  const data = await resp.json();
   
@@ -108,7 +108,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		fetchStarshipDetails: async (id) => {
 		  try {
-			const url = `https://swapi.dev/api/starships/${id}/`; // Update the API endpoint to fetch starship details
+			const url = `https://www.swapi.tech/api/starships/${id}/`; // Update the API endpoint to fetch starship details
 			const response = await fetch(url);
 			if (!response.ok) {
 			  throw new Error("Failed to fetch starship details"); // Update the error message
