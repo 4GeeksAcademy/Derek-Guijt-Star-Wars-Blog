@@ -5,34 +5,48 @@ const getState = ({ getStore, getActions, setStore }) => {
 		planets: [],
 		starships: [],
 		favorites: [],
-		currentPerson: null,
-		currentPlanet: null,
-		currentStarship: null,
+		currentPerson: {},
+		currentPlanet: {},
+		currentStarship: {},
 	  },
 	  actions: {
-		fetchPeople: async (resource = "people", page = 1, count = 0) => {
-		  if (count >= 10) {
-			return;
-		  }
+		// fetchPeople: async (resource = "people", page = 1, count = 0) => {
+		//   if (count >= 10) {
+		// 	return;
+		//   }
   
-		  const resp = await fetch(
-			`https://www.swapi.tech/api/${resource}/?page=${page}`
-		  );
-		  const data = await resp.json();
+		//   const resp = await fetch(
+		// 	`https://www.swapi.tech/api/${resource}/?page=${page}`
+		//   );
+		//   const data = await resp.json();
   
-		  const peopleWithId = data.results.map((person) => {
-			const urlParts = person.url.split("/");
-			const id = urlParts[urlParts.length - 2];
-			return { ...person, id };
-		  });
+		//   const peopleWithId = data.results.map((person) => {
+		// 	const urlParts = person.url.split("/");
+		// 	const id = urlParts[urlParts.length - 2];
+		// 	return { ...person, id };
+		//   });
   
-		  setStore({ people: [...getStore().people, ...peopleWithId] });
+		//   setStore({ people: [...getStore().people, ...peopleWithId] });
   
-		  if (data.next) {
-			getActions().fetchPeople(resource, page + 1, count + 1);
-		  }
+		//   if (data.next) {
+		// 	getActions().fetchPeople(resource, page + 1, count + 1);
+		//   }
+		// },
+		fetchPeople: async() => {
+			const response = await fetch("https://www.swapi.tech/api/people/")
+			const data = await response.json()
+			setStore({people: data.results})
 		},
-  
+		fetchPlanets: async() => {
+			const response = await fetch("https://www.swapi.tech/api/planets/")
+			const data = await response.json()
+			setStore({planets: data.results})
+		},
+		fetchStarShips: async() => {
+			const response = await fetch("https://www.swapi.tech/api/starships/")
+			const data = await response.json()
+			setStore({starships: data.results})
+		},
 		fetchPersonDetails: async (id) => {
 		  try {
 			const url = `https://www.swapi.tech/api/people/${id}/`;
@@ -41,34 +55,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 			  throw new Error("Failed to fetch person details");
 			}
 			const data = await response.json();
-			setStore({ currentPerson: data });
+			setStore({ currentPerson: data.result.properties });
 		  } catch (error) {
 			console.error("Error fetching person details: ", error);
 		  }
 		},
   
-		fetchPlanets: async (resource = "planets", page = 1, count = 0) => {
-		  if (count >= 10) {
-			return;
-		  }
+		// fetchPlanets: async (resource = "planets", page = 1, count = 0) => {
+		//   if (count >= 10) {
+		// 	return;
+		//   }
   
-		  const resp = await fetch(
-			`https://www.swapi.tech/api/${resource}/?page=${page}`
-		  );
-		  const data = await resp.json();
+		//   const resp = await fetch(
+		// 	`https://www.swapi.tech/api/${resource}/?page=${page}`
+		//   );
+		//   const data = await resp.json();
   
-		  const planetsWithId = data.results.map((planet) => {
-			const urlParts = planet.url.split("/");
-			const id = urlParts[urlParts.length - 2];
-			return { ...planet, id };
-		  });
+		//   const planetsWithId = data.results.map((planet) => {
+		// 	const urlParts = planet.url.split("/");
+		// 	const id = urlParts[urlParts.length - 2];
+		// 	return { ...planet, id };
+		//   });
   
-		  setStore({ planets: [...getStore().planets, ...planetsWithId] });
+		//   setStore({ planets: [...getStore().planets, ...planetsWithId] });
   
-		  if (data.next) {
-			getActions().fetchPlanets(resource, page + 1, count + 1);
-		  }
-		},
+		//   if (data.next) {
+		// 	getActions().fetchPlanets(resource, page + 1, count + 1);
+		//   }
+		// },
   
 		fetchPlanetDetail: async (id) => {
 		  try {
@@ -84,28 +98,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 		  }
 		},
   
-		fetchStarShips: async (resource = "starships", page = 1, count = 0) => {
-		  if (count >= 10) {
-			return;
-		  }
+		// fetchStarShips: async (resource = "starships", page = 1, count = 0) => {
+		//   if (count >= 10) {
+		// 	return;
+		//   }
   
-		  const resp = await fetch(
-			`https://www.swapi.tech/api/${resource}/?page=${page}`
-		  );
-		  const data = await resp.json();
+		//   const resp = await fetch(
+		// 	`https://www.swapi.tech/api/${resource}/?page=${page}`
+		//   );
+		//   const data = await resp.json();
   
-		  const starshipsWithId = data.results.map((starship) => {
-			const urlParts = starship.url.split("/");
-			const id = urlParts[urlParts.length - 2];
-			return { ...starship, id };
-		  });
+		//   const starshipsWithId = data.results.map((starship) => {
+		// 	const urlParts = starship.url.split("/");
+		// 	const id = urlParts[urlParts.length - 2];
+		// 	return { ...starship, id };
+		//   });
   
-		  setStore({ starships: [...getStore().starships, ...starshipsWithId] });
+		//   setStore({ starships: [...getStore().starships, ...starshipsWithId] });
   
-		  if (data.next) {
-			getActions().fetchStarShips(resource, page + 1, count + 1);
-		  }
-		},
+		//   if (data.next) {
+		// 	getActions().fetchStarShips(resource, page + 1, count + 1);
+		//   }
+		// },
+
 		fetchStarshipDetails: async (id) => {
 		  try {
 			const url = `https://www.swapi.tech/api/starships/${id}/`; // Update the API endpoint to fetch starship details

@@ -6,10 +6,15 @@ import { Context } from "../store/appContext";
 function PlanetCard() {
   const { store, actions } = useContext(Context);
   const [activeFav, setActiveFav] = useState(false);
+  const [planets, setPlanets] = useState([])
 
   useEffect(() => {
     actions.fetchPlanets();
   }, []);
+
+  useEffect(() => {
+    setPlanets(store.planets);
+  }, [store.planets]);
 
   const handleFavorites = (planet) => {
     const isFavorite = store.favorites.some((fav) => fav.id === planet.id);
@@ -25,7 +30,7 @@ function PlanetCard() {
       className="d-flex col-10 overflow-auto mt-5 mx-auto cards"
       style={{ height: "50rem" }}
     >
-      {store.planets.map((planet, index) => {
+      {planets.map((planet, index) => {
         const isFavorite = store.favorites.some(
           (fav) => fav.id === planet.id && fav.type === "planet"
         );
@@ -37,16 +42,12 @@ function PlanetCard() {
           >
             <h3>{planet.name}</h3>
             <img
-              src={`https://starwars-visualguide.com/assets/img/planets/${planet.id}.jpg`}
+              src={`https://starwars-visualguide.com/assets/img/planets/${index + 1}.jpg`}
               className="card-img-top"
               alt={planet.name}
               style={{ height: "30rem", width: "30rem" }}
             />
-            <p>Population: {planet.population}</p>
-            <p>Terrain: {planet.terrain}</p>
-            <p>Climate: {planet.climate}</p>
-            <p>Gravity: {planet.gravity}</p>
-            <Link to={`/PlanetDetails/${planet.id}`}>Learn More</Link>
+            <Link to={`/PlanetDetails/${index + 1}`}>Learn More</Link>
             <button
               className={isFavorite ? "fas fa-heart" : "far fa-heart"}
               onClick={() => handleFavorites(planet)}

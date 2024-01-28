@@ -43,17 +43,12 @@ function PeopleCard() {
           >
             <h3>{person.name}</h3>
             <img
-              src={`https://starwars-visualguide.com/assets/img/characters/${person.id}.jpg`}
+              src={`https://starwars-visualguide.com/assets/img/characters/${index + 1}.jpg`}
               className="card-img-top"
               alt={person.name}
               style={{ height: "30rem", width: "30rem" }}
             />
-            <p>Height: {person.height}</p>
-            <p>Mass: {person.mass}</p>
-            <p>Hair Color: {person.hair_color}</p>
-            <p>Skin Color: {person.skin_color}</p>
-            <p>Eye Color: {person.eye_color}</p>
-            <Link to={`/CharacterDetails/${person.id}`}>Learn More</Link>
+            <Link to={`/CharacterDetails/` + (index + 1)}>Learn More</Link>
             <button
               className={isFavorite ? "fas fa-heart" : "far fa-heart"}
               onClick={() => handleFavorites(person)}
