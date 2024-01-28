@@ -38,7 +38,7 @@ function StarshipCard() {
           >
             <h3>{starship.name}</h3>
             <img
-              src={`https://starwars-visualguide.com/assets/img/starships/${starship.id}.jpg`}
+              src={`https://starwars-visualguide.com/assets/img/starships/${starship.uid}.jpg`}
               className="card-img-top"
               alt={starship.name}
               style={{ height: "30rem", width: "30rem" }}

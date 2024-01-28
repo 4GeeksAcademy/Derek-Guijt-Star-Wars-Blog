@@ -22,7 +22,7 @@ function CharacterDetail() {
   return (
     <div className="card mt-5" style={{ width: "30rem", margin: "auto" }}>
       <img
-        src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+        src={`https://starwars-visualguide.com/assets/img/characters/${parseInt(id) + 1}.jpg`}
         className="card-img-top"
         alt={name}
         style={{ height: "30rem" }}
