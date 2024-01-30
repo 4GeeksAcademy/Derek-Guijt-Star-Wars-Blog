@@ -8,7 +8,7 @@ function CharacterDetail() {
   const { id } = useParams();
 
   useEffect(() => {
-    actions.fetchPersonDetails(id);
+    actions.fetchPersonDetail(uid);
     setCharacter(store.currentPerson)
   }, []);
 

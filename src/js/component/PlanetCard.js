@@ -5,9 +5,9 @@ import { Context } from "../store/appContext";
 
 function PlanetCard() {
   const { store, actions } = useContext(Context);
-  const [activeFav, setActiveFav] = useState(false);
-  const [planets, setPlanets] = useState([])
+  const [planets, setPlanets] = useState([]);
 
+  // Fetch planets on component mount
   useEffect(() => {
     actions.fetchPlanets();
   }, []);
@@ -16,12 +16,13 @@ function PlanetCard() {
     setPlanets(store.planets);
   }, [store.planets]);
 
+  // Handling the favorites toggle
   const handleFavorites = (planet) => {
-    const isFavorite = store.favorites.some((fav) => fav.id === planet.id);
+    const isFavorite = store.favorites.some((fav) => fav.uid === planet.uid);
     if (isFavorite) {
-      actions.removeFavorites(planet.name);
+      actions.removeFavorites(planet.name); // Make sure this correctly identifies the planet to remove
     } else {
-      actions.addFavorites(planet.name, planet.id, "planet");
+      actions.addFavorites(planet.name, planet.uid, "planets");
     }
   };
 
@@ -32,7 +33,7 @@ function PlanetCard() {
     >
       {planets.map((planet, index) => {
         const isFavorite = store.favorites.some(
-          (fav) => fav.id === planet.id && fav.type === "planet"
+          (fav) => fav.uid === planet.uid && fav.type === "planets"
         );
         return (
           <div
@@ -47,11 +48,13 @@ function PlanetCard() {
               alt={planet.name}
               style={{ height: "30rem", width: "30rem" }}
             />
-            <Link to={`/PlanetDetails/${index + 1}`}>Learn More</Link>
+            <Link to={`/PlanetDetail/` + (index)}>Learn More</Link>
             <button
               className={isFavorite ? "fas fa-heart" : "far fa-heart"}
               onClick={() => handleFavorites(planet)}
-            ></button>
+            >
+              {" "}
+            </button>
           </div>
         );
       })}

@@ -26,7 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			const data = await response.json()
 			setStore({starships: data.results})
 		},
-		fetchPersonDetails: async (uid) => {
+		fetchPersonDetail: async (uid) => {
 		  try {
 			const url = `https://www.swapi.tech/api/people/${uid}/`;
 			const response = await fetch(url);
@@ -57,7 +57,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
   
 
-		fetchStarshipDetails: async (uid) => {
+		fetchStarshipDetail: async (uid) => {
 		  try {
 			const url = `https://www.swapi.tech/api/starships/${uid}/`; // Update the API endpoint to fetch starship details
 			const response = await fetch(url);

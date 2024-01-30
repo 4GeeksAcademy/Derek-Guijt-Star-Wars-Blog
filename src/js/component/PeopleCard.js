@@ -18,11 +18,11 @@ function PeopleCard() {
 
   // Handling the favorites toggle
   const handleFavorites = (person) => {
-    const isFavorite = store.favorites.some((fav) => fav.uid === person.uid);
+    const isFavorite = store.favorites.some((fav) => fav.id === person.id);
     if (isFavorite) {
       actions.removeFavorites(person.name); // Make sure this correctly identifies the person to remove
     } else {
-      actions.addFavorites(person.name, person.uid, "character");
+      actions.addFavorites(person.name, person.id, "character");
     }
   };
 
@@ -33,7 +33,7 @@ function PeopleCard() {
     >
       {people.map((person, index) => {
         const isFavorite = store.favorites.some(
-          (fav) => fav.uid === person.uid && fav.type === "character"
+          (fav) => fav.id === person.id && fav.type === "character"
         );
         return (
           <div

@@ -3,21 +3,26 @@ import { Link } from "react-router-dom";
 import "../../styles/home.css";
 import { Context } from "../store/appContext";
 
-function StarshipCard() {
-  // Changed function name from PeopleCard to StarshipCard
+function StarshipsCard() {
   const { store, actions } = useContext(Context);
-  const [activeFav, setActiveFav] = useState(false);
+  const [starships, setStarships] = useState([]);
+
+  // Fetch starships on component mount
   useEffect(() => {
-    actions.fetchStarShips();
+    actions.fetchStarships();
   }, []);
 
-  // You might need this in another project
+  useEffect(() => {
+    setStarships(store.starships);
+  }, [store.starships]);
+
+  // Handling the favorites toggle
   const handleFavorites = (starship) => {
-    const isFavorite = store.favorites.some((fav) => fav.id === starship.id);
+    const isFavorite = store.favorites.some((fav) => fav.uid === starship.uid);
     if (isFavorite) {
-      actions.removeFavorites(starship.name);
+      actions.removeFavorites(starship.name); // Make sure this correctly identifies the starship to remove
     } else {
-      actions.addFavorites(starship.name, starship.id, "starship");
+      actions.addFavorites(starship.name, starship.uid, "starships");
     }
   };
 
@@ -26,9 +31,9 @@ function StarshipCard() {
       className="d-flex col-10 overflow-auto mt-5 mx-auto cards"
       style={{ height: "50rem" }}
     >
-      {store.starships.map((starship, index) => {
+      {starships.map((starship, index) => {
         const isFavorite = store.favorites.some(
-          (fav) => fav.id === starship.id && fav.type === "starship"
+          (fav) => fav.uid === starship.uid && fav.type === "starships"
         );
         return (
           <div
@@ -38,21 +43,18 @@ function StarshipCard() {
           >
             <h3>{starship.name}</h3>
             <img
-              src={`https://starwars-visualguide.com/assets/img/starships/${starship.uid}.jpg`}
+              src={`https://starwars-visualguide.com/assets/img/starships/${index + 1}.jpg`}
               className="card-img-top"
               alt={starship.name}
               style={{ height: "30rem", width: "30rem" }}
             />
-            <p>Model: {starship.model}</p>
-            <p>Manufacturer: {starship.manufacturer}</p>
-            <p>Cost in Credits: {starship.cost_in_credits}</p>
-            <p>Length: {starship.length}</p>
-            <p>Max Atmosphering Speed: {starship.max_atmosphering_speed}</p>
-            <Link to={`/StarshipDetails/${starship.id}`}>Learn More</Link>
+            <Link to={`/starshipsDetail/` + (index)}>Learn More</Link>
             <button
               className={isFavorite ? "fas fa-heart" : "far fa-heart"}
               onClick={() => handleFavorites(starship)}
-            ></button>
+            >
+              {" "}
+            </button>
           </div>
         );
       })}
@@ -60,4 +62,4 @@ function StarshipCard() {
   );
 }
 
-export default StarshipCard; 
+export default StarshipsCard;
