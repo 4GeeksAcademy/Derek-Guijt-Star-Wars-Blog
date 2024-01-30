@@ -32,8 +32,9 @@ function PeopleCard() {
       style={{ height: "50rem" }}
     >
       {people.map((person, index) => {
+        console.log(person)
         const isFavorite = store.favorites.some(
-          (fav) => fav.id === person.id && fav.type === "character"
+          (fav) => fav.uid === person.uid && fav.type === "character"
         );
         return (
           <div
@@ -43,12 +44,12 @@ function PeopleCard() {
           >
             <h3>{person.name}</h3>
             <img
-              src={`https://starwars-visualguide.com/assets/img/characters/${index + 1}.jpg`}
+              src={`https://starwars-visualguide.com/assets/img/characters/${person.uid}.jpg`}
               className="card-img-top"
               alt={person.name}
               style={{ height: "30rem", width: "30rem" }}
             />
-            <Link to={`/CharacterDetails/` + (index)}>Learn More</Link>
+            <Link to={`/CharacterDetail/` + person.uid}>Learn More</Link>
             <button
               className={isFavorite ? "fas fa-heart" : "far fa-heart"}
               onClick={() => handleFavorites(person)}

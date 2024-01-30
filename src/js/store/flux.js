@@ -21,24 +21,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 			const data = await response.json()
 			setStore({planets: data.results})
 		},
-		fetchStarShips: async() => {
+		fetchStarships: async() => {
 			const response = await fetch("https://www.swapi.tech/api/starships/")
 			const data = await response.json()
 			setStore({starships: data.results})
 		},
 		fetchPersonDetail: async (uid) => {
-		  try {
-			const url = `https://www.swapi.tech/api/people/${uid}/`;
-			const response = await fetch(url);
-			if (!response.ok) {
-			  throw new Error("Failed to fetch person details");
-			}
+			const response = await fetch(`https://www.swapi.tech/api/people/${uid}`)
 			const data = await response.json();
 			console.log(data)
 			setStore({ currentPerson: data.result.properties });
-		  } catch (error) {
-			console.error("Error fetching person details: ", error);
-		  }
 		},
   
   

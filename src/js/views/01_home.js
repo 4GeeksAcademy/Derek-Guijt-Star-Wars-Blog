@@ -10,7 +10,7 @@ import StarshipScroller from "../component/StarshipScroller.js";
 export const Home = () => (
   <>
     <PeopleScroller />
-    {/* <PlanetScroller />
-    <StarshipScroller /> */}
+    <PlanetScroller />
+    <StarshipScroller />
   </>
 );

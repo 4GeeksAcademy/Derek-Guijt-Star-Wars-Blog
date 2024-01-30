@@ -43,12 +43,12 @@ function PlanetCard() {
           >
             <h3>{planet.name}</h3>
             <img
-              src={`https://starwars-visualguide.com/assets/img/planets/${index + 1}.jpg`}
+              src={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`}
               className="card-img-top"
               alt={planet.name}
               style={{ height: "30rem", width: "30rem" }}
             />
-            <Link to={`/PlanetDetail/` + (index)}>Learn More</Link>
+            <Link to={`/PlanetDetail/` + (planet.uid)}>Learn More</Link>
             <button
               className={isFavorite ? "fas fa-heart" : "far fa-heart"}
               onClick={() => handleFavorites(planet)}

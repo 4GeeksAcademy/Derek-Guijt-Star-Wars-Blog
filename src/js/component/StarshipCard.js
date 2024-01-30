@@ -43,12 +43,12 @@ function StarshipsCard() {
           >
             <h3>{starship.name}</h3>
             <img
-              src={`https://starwars-visualguide.com/assets/img/starships/${index + 1}.jpg`}
+              src={`https://starwars-visualguide.com/assets/img/starships/${starships.uid}.jpg`}
               className="card-img-top"
               alt={starship.name}
               style={{ height: "30rem", width: "30rem" }}
             />
-            <Link to={`/starshipsDetail/` + (index)}>Learn More</Link>
+            <Link to={`/starshipsDetail/` + (starships.uid)}>Learn More</Link>
             <button
               className={isFavorite ? "fas fa-heart" : "far fa-heart"}
               onClick={() => handleFavorites(starship)}

@@ -8,7 +8,7 @@ function PlanetDetail() {
   const { id } = useParams();
 
   useEffect(() => {
-    actions.fetchPlanetsDetail(id);
+    actions.fetchPlanetDetail(id);
     setplanet(store.currentPlanets)
   }, []);
 
