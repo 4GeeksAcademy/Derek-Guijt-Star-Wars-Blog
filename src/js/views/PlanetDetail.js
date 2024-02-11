@@ -21,11 +21,11 @@ function PlanetDetail() {
       />
       <div className="card-body">
         <h1 className="card-title">{store.currentPlanet.name}</h1>
-        <p className="card-text">Height: {store.currentPlanet.height}</p>
-        <p className="card-text">Mass: {store.currentPlanet.mass}</p>
-        <p className="card-text">Hair Color: {store.currentPlanet.hair_color}</p>
-        <p className="card-text">Skin Color: {store.currentPlanet.skin_color}</p>
-        <p className="card-text">Eye Color: {store.currentPlanet.eye_color}</p>
+        <p className="card-text">Name: {store.currentPlanet.name}</p>
+        <p className="card-text">Population: {store.currentPlanet.population}</p>
+        <p className="card-text">Terrain: {store.currentPlanet.terrain}</p>
+        <p className="card-text">Diameter: {store.currentPlanet.diameter}</p>
+        <p className="card-text">Rotation Period: {store.currentPlanet.rotation_period}</p>
       </div></>) : (<div>Loading...</div>)}
     </div>
   );
