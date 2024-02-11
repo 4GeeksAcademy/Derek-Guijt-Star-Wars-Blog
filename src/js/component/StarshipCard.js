@@ -22,7 +22,7 @@ function StarshipsCard() {
     if (isFavorite) {
       actions.removeFavorites(starship.name); // Make sure this correctly identifies the starship to remove
     } else {
-      actions.addFavorites(starship.name, starship.uid, "starships");
+      actions.addFavorites(starship.model, starship.id, "starships");
     }
   };
 
