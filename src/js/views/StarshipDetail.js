@@ -19,7 +19,7 @@ function StarshipDetail() {
         style={{ height: "30rem" }}
       />
       <div className="card-body">
-        <h1 className="card-title">{store.currentStarship.model}</h1>
+        <h1 className="card-title">{store.currentStarship.name}</h1>
         <p className="card-text">Starship Class: {store.currentStarship.starship_class}</p>
         <p className="card-text">Crew: {store.currentStarship.crew}</p>
         <p className="card-text">Passengers: {store.currentStarship.passengers}</p>

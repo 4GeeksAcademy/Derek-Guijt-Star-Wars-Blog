@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../../styles/home.css";
 import { Context } from "../store/appContext";
 
-function StarshipsCard() {
+function StarshipCard() {
   const { store, actions } = useContext(Context);
   const [starships, setStarships] = useState([]);
 
@@ -43,12 +43,12 @@ function StarshipsCard() {
           >
             <h3>{starship.name}</h3>
             <img
-              src={`https://starwars-visualguide.com/assets/img/starships/${starships.uid}.jpg`}
+              src={`https://starwars-visualguide.com/assets/img/starships/${starship.uid}.jpg`}
               className="card-img-top"
               alt={starship.name}
               style={{ height: "30rem", width: "30rem" }}
             />
-            <Link to={`/starshipsDetail/` + (starships.uid)}>Learn More</Link>
+            <Link to={`/StarshipDetail/` + (starship.uid)}>Learn More</Link>
             <button
               className={isFavorite ? "fas fa-heart" : "far fa-heart"}
               onClick={() => handleFavorites(starship)}
@@ -62,4 +62,4 @@ function StarshipsCard() {
   );
 }
 
-export default StarshipsCard;
+export default StarshipCard;
